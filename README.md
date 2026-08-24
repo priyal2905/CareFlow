@@ -513,9 +513,8 @@ The project can serve as a foundation for a larger healthcare platform.
 
 # 👨‍💻 Author
 
-**Priyal Riyal**
+**Priyal**
 
-B.Tech Computer Science & Engineering
 
 ---
 
