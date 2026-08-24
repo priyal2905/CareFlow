@@ -1,22 +1,22 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    "http://localhost:5000/api",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// ============================================================
-// ADD JWT TOKEN TO EVERY REQUEST
-// ============================================================
-
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token =
+      localStorage.getItem("careflow_token");
 
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization =
+        `Bearer ${token}`;
     }
 
     return config;
@@ -26,17 +26,18 @@ api.interceptors.request.use(
   }
 );
 
-// ============================================================
-// HANDLE AUTHENTICATION ERRORS
-// ============================================================
-
 api.interceptors.response.use(
   (response) => response,
 
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.removeItem(
+        "careflow_token"
+      );
+
+      localStorage.removeItem(
+        "careflow_user"
+      );
     }
 
     return Promise.reject(error);
