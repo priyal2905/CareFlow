@@ -21,7 +21,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://care-flow-eta.vercel.app/login",
+      "https://care-flow-eta.vercel.app",
     ],
     credentials: true,
   })
